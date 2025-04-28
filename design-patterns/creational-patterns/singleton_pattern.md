@@ -39,11 +39,12 @@ console.log(singleton1 === singleton2); => true
 ```
 အပေါ်က ဥပမာမှာဆိုရင် Singleton Class ရဲ့ constructor က Private ဖစ်နေရမယ် အဲ့တာမှ
 သူကို အပြင်ကနေ လှမ်းပီး instantiate လုပ်လို့မရမှာဖစ်တယ်။ ရည်ရွယ်ချက်ကိုက သူတို့ကိုပေးမှမလုပ်ချင်တာကိုး။
-ဒါဆိုမေးစရာကရှိပီး ဥပမာ Dependency Injection ကိစ္စအတွက်ကျဘယ်လိုလုပ်ကြမလဲပေါ့။အောက်မှာ ဥပမာနဲ့ပြထားပေးပါမယ်။
 Static Method ကနေပီး instance created ဖစ်သလားစစ်မယ် မဖစ်ရင် အသစ်ဆောက်မယ် ဖစ်ရင် ရှိပီးသားကိုပဲ
 ပြန်ပေးလိုက်မယ်။
 
 Static Method အသုံးပြုပုံအခေါ်အ၀ေါ်ကို Lazy Initialization လို့ခေါ်တယ်ဗျ။ Lazy Initialization ဆိုတာဘာကိုပြောချင်တာလဲဆိုရင် **အမှန်တကယ်လိုအပ်တဲ့ချိန်မရောက်သေးသ၍ Object Creation အပိုင်းကို Delay လုပ်ထားတာဖစ်တယ်** ဘာတွေပိုပီးကောင်မွန်သွားသလဲဆိုရင် saves memory, startup time ကို လျှော့ချပေးနိုင် စစချင်း Object Creation မလုပ်တဲ့အတွက်။ 
+
+Singleton Class ရဲ့ constructor က private ဖစ်ရမယ်ဆိုရင် မေးစရာကရှိလာပီ ဥပမာ Dependency Injection ကိစ္စအတွက်ကျဘယ်လိုလုပ်ကြမလဲပေါ့။အောက်မှာ ဥပမာနဲ့ပြထားပေးပါမယ်။
 
 ```typescript
 class Service {
