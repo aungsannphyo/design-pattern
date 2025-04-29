@@ -16,7 +16,7 @@ interface IPaymentProcessor {
 
 class CBPaymentProcessor implements IPaymentProcessor{
     user:string;
-    cbPayment : CB;
+    paymentMethod : CB;
 
     constructor(user:string){
         this.user = user;
@@ -30,7 +30,7 @@ class CBPaymentProcessor implements IPaymentProcessor{
 
 class AYAPaymentProcessor implements IPaymentProcessor{
     user:string;
-    cbPayment : AYA;
+    paymentMethod : AYA;
 
     constructor(user:string){
         this.user = user;
