@@ -76,8 +76,8 @@ KBZGatewayFactory → KBZGateway (charge)
 AYAGatewayFactory → AYAGateway (charge)
 ```
 
-Factory ကိုသုံးခြင်းဖြင့်သူ့ရဲ့ကောင်းကျိုးတွေကဘာတွေလဲဆိုတော့ tight coupling ဖစ်တာကိုအတော်လျှော့သွားစေတဲ့အပြင် subclass တွေကဘယ်သူအပေါ်မှမှီခိုမှု့မရှိတော့ပဲ loose coupling ဖစ်စေတဲ့။ business logic တွေကိုသူတို့နဲ့သက်ဆိုင်ရာမှာပဲရေးထားတဲ့အတွက် Single Responsibility ကိုလိုက်နာသလိုလဲဖစ်တဲ့အပြင်၊ အသစ်ထပ်ထည့်မဲ့ cb payment ကို PaymentGatewayFactory ကိုပဲ extend လုပ်ပီး အသစ်ထပ်ထည့်လိုက်ရုံပဲ အဲ့တော့ ရှိပီးသား code တွေကို ပြင်စရာမလိုတဲ့အတွက် Open/Closed Principle ကိုလဲလိုက်နာသလိုဖစ်တယ််။ 
+Factory ကိုသုံးခြင်းဖြင့်သူ့ရဲ့ကောင်းကျိုးတွေကဘာတွေလဲဆိုတော့ tight coupling ဖစ်တာကိုအတော်လျှော့သွားစေတဲ့အပြင် subclass တွေကဘယ်သူအပေါ်မှမှီခိုမှု့မရှိတော့ပဲ loose coupling ဖစ်စေတယ်။ business logic တွေကိုသူတို့နဲ့သက်ဆိုင်ရာမှာပဲရေးထားတဲ့အတွက် Single Responsibility ကိုလိုက်နာသလိုလဲဖစ်တဲ့အပြင်၊ အသစ်ထပ်ထည့်မဲ့ cb payment ကို PaymentGatewayFactory ကိုပဲ extend လုပ်ပီး အသစ်ထပ်ထည့်လိုက်ရုံပဲ အဲ့တော့ ရှိပီးသား code တွေကို ပြင်စရာမလိုတဲ့အတွက် Open/Closed Principle ကိုလဲလိုက်နာသလိုဖစ်တယ််။ 
 
-မကောင်းတဲ့အချက်ကိုပြောပါဆိုရင်တော့ နှစ်ခုသုံးမကတော့ပဲ အများကြီး၀ိုင်းသုံးရမဲ့ကိစ္စတွေဖစ်လာပီဆိုရင်တော့ subclass ကတွေအများကြီးက interface တစ်ခုထဲကို ၀ိုင်းပီး implementation လုပ်ရတဲ့အတွက်က code base ကများလာတဲ့အလျှောက်
+မကောင်းတဲ့အချက်ကိုပြောပါဆိုရင်တော့ နှစ်ခုသုံးခုမကတော့ပဲ အများကြီး၀ိုင်းသုံးရမဲ့ကိစ္စတွေဖစ်လာပီဆိုရင်တော့ subclass ကတွေအများကြီးက interface တစ်ခုထဲကို ၀ိုင်းပီး implementation လုပ်ရတဲ့အတွက်က code base ကများလာတဲ့အလျှောက်
 messy အရမ်းဖစ်လာနိုင်တယ်၊ ပီးတော့ product တစ်ခုချင်းစီက new concrete class and factory subclass တွေလိုအပ်တဲ့အတွက်
 class explosion ဖစ်လာနိုင်ကာ တစ်ခုနဲ့တစ်ခု navigate လုပ်ဖို့ခက်ခဲလာနိုင်ပါတယ်။
