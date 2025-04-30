@@ -85,7 +85,7 @@ fiveHunderHandler.setNext(oneThousandKyatHandler)
                  .setNext(fiveThousandKyatHandler)
                  .setNext(tenThousandKyatHandler);
 
-const kyats = [500, 1000, 1000, 50, 5000]; 
+const kyats = [500, 1000, 1000, 1000, 50]; 
 
 kyats.forEach(kyats => {
   fiveHunderHandler.handle(kyat);
@@ -97,7 +97,7 @@ kyats.forEach(kyats => {
 Accepted: 500 kyat
 Accepted: 1000 kyat
 Accepted: 1000 kyat
-Accepted: 10000 kyat
+Accepted: 1000 kyat
 50 kyat is not accepted.
 ```
 
