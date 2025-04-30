@@ -26,7 +26,7 @@ abstract class BaseKyatHandler implements kyatHandler {
     if (this.nextHandler) {
       this.nextHandler.handle(kyat);
     } else {
-      console.log(`Kyat ${kyat}¢ is not accepted.`);
+      console.log(`${kyat} Kyat is not accepted.`);
     }
   }
 }
