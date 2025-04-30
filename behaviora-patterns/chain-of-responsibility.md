@@ -34,7 +34,7 @@ abstract class BaseKyatHandler implements kyatHandler {
 
 ```typescript
 // Concrete Currency Handlers
-class FiveHunderdKyatHandler extends BaseKyatHandler {
+class FiveHundredKyatHandler extends BaseKyatHandler {
   handle(kyat: number): void {
     if (kyat === 500) {
       console.log("Accepted: 500 kyat");
