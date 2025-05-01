@@ -41,6 +41,10 @@ class AYAGateway implements PaymentGateway {
 // Creator
 abstract class PaymentGatewayFactory {
   abstract createGateway(): PaymentGateway;
+
+  processPayment(amount :number){
+   const gateway = this.createGateway()
+   gateway.charge(amount)
 }
 ```
 ```typescript
