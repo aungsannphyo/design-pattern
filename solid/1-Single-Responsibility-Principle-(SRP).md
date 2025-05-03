@@ -4,51 +4,58 @@ Class တစ်ခုမှာသူနဲ့သက်ဆိုင်တဲ့ �
 
 **Bad :**
 
-```typescript
-class UserSettings {
-  constructor(user) {
-    this.user = user;
-  }
+```java
+public class UserSettings {
+    private User user;
 
-  changeSettings(settings) {
-    if (this.verifyCredentials()) {
-      // ...
+    public UserSettings(User user) {
+        this.user = user;
     }
-  }
 
-  verifyCredentials() {
-    // ...
-  }
+    
+    public void changeSettings(Settings settings) {
+        if (verifyCredentials()) {
+        }
+    }
+
+    private boolean verifyCredentials() {
+        return true; 
+    }
 }
-
 ```
 
 
 
 **Good :**
 
-```typescript
-class UserAuth {
-  constructor(user) {
-    this.user = user;
-  }
+```java
+public class UserAuth {
+    private User user;
 
-  verifyCredentials() {
-    // ...
-  }
+    public UserAuth(User user) {
+        this.user = user;
+    }
+
+    public boolean verifyCredentials() {
+        return true; 
+    }
 }
 
-class UserSettings {
-  constructor(user) {
-    this.user = user;
-    this.auth = new UserAuth(user);
-  }
+public class UserSettings {
+    private User user;
+    private UserAuth auth;
 
-  changeSettings(settings) {
-    if (this.auth.verifyCredentials()) {
-      // ...
+    public UserSettings(User user) {
+        this.user = user;
+        this.auth = new UserAuth(user); 
     }
-  }
+
+   
+    public void changeSettings(Settings settings) {
+        if (auth.verifyCredentials()) {
+            // Logic to change settings
+        }
+    }
 }
 
 ```

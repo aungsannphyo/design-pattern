@@ -16,55 +16,67 @@ Factory Method က Creational Patterns ရဲ့အောက်ကိုရေ�
  အဓိက client ကခေါ်မဲ့ super slass ကိုအလုပ်မလုပ်စေပဲ subclass ကိုအလုပ်ပေးထားရုံပဲ၊ 
  ဘာကောင်းသွားသလဲဆိုတော့ creation code တွေက်ိုပါ encapsulate လုပ်သလိုဖစ်စေတယ်။
 
- ```typescript
+ ```java
  // Product Interface 
-interface PaymentGateway {
-  charge(amount: number) : void;
-}
-```
-```typescript
-// Concrete Product - KBZ
-class KBZGateway implements PaymentGateway {
-    charge(amount: number) {
-        console.log(`Charging $${amount} with KBZ...`);
-  }
+public interface PaymentGateway {
+    void charge(double amount);
 }
 
-// Concrete Product - AYA
-class AYAGateway implements PaymentGateway {
-    charge(amount: number) {
-        console.log(`Charging $${amount} with AYA...`);
-  }
-}
 ```
-```typescript
+```java
+// Concrete Product - KBZ
+public class KBZGateway implements PaymentGateway {
+    @Override
+    public void charge(double amount) {
+        System.out.println("Charging $" + amount + " with KBZ...");
+    }
+}
+
+public class AYAGateway implements PaymentGateway {
+    @Override
+    public void charge(double amount) {
+        System.out.println("Charging $" + amount + " with AYA...");
+    }
+}
+
+```
+```java
 // Creator
-abstract class PaymentGatewayFactory {
-  abstract createGateway(): PaymentGateway;
+// Abstract Factory
+public abstract class PaymentGatewayFactory {
+    public abstract PaymentGateway createGateway();
 }
-```
-```typescript
+
 // Concrete Factory - KBZ
-class KBZGatewayFactory extends PaymentGatewayFactory {
- createGateway(): PaymentGateway {
-    return new KBZGateway();
-  }
+public class KBZGatewayFactory extends PaymentGatewayFactory {
+    @Override
+    public PaymentGateway createGateway() {
+        return new KBZGateway();
+    }
 }
 
 // Concrete Factory - AYA
-class AYAGatewayFactory extends PaymentGatewayFactory {
-  createGateway(): PaymentGateway {
-    return new AYAGateway();
-  }
+public class AYAGatewayFactory extends PaymentGatewayFactory {
+    @Override
+    public PaymentGateway createGateway() {
+        return new AYAGateway();
+    }
 }
-```
-```typescript
-async function main() {
-  
-  const kbz = new KBZGatewayFactory().createGateway().charge(100); //Charging $100 with KBZ...
 
-  const aya = new AYAGatewayFactory().createGateway().charge(100); //Charging $100 with CB...
+```
+```java
+public class Main {
+    public static void main(String[] args) {
+        // Using KBZ Gateway Factory to create KBZ Gateway and charge
+        PaymentGateway kbzGateway = new KBZGatewayFactory().createGateway();
+        kbzGateway.charge(100);  // Charging $100 with KBZ...
+
+        // Using AYA Gateway Factory to create AYA Gateway and charge
+        PaymentGateway ayaGateway = new AYAGatewayFactory().createGateway();
+        ayaGateway.charge(100);  // Charging $100 with AYA...
+    }
 }
+
 ```
 
 ```csharp

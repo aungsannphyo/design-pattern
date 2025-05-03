@@ -6,49 +6,63 @@ Interface Segregation ကဘာလဲဆိုရင် Interface တွေက�
 
 **Bad**
 
-```typescript
-interface IVehicle {
-getSpeed() : number;
-getVehicleType: string;
-isTaxPayed() : boolean;
-isLightsOn() : boolean;
-isLightsOff() : boolean;
-startEngine() : void;
-acelerate() : number;
-stopEngine() : void;
-startRadio() : void;
-playCd : void;
-stopRadio() : void;
+```java
+public interface IVehicle {
+    int getSpeed(); 
+
+    String getVehicleType(); 
+
+    boolean isTaxPaid(); 
+
+    boolean isLightsOn();
+
+    boolean isLightsOff(); 
+
+    void startEngine(); 
+
+    int accelerate(); 
+
+    void stopEngine(); 
+
+    void startRadio(); 
+
+    void playCd(); 
+
+    void stopRadio(); 
 }
+
 ```
 
 
 
 **Good**
 
-```typescript
-interface IVehicle {
-getSpeed() : number;
-getVehicleType: string;
-isTaxPayed() : boolean;
-isLightsOn() : boolean;
+```java
+
+public interface IVehicle {
+    int getSpeed(); 
+    String getVehicleType(); 
+    boolean isTaxPaid(); 
 }
 
-interface ILights {
-isLightsOn() : boolean;
-isLightsOff() : boolean;
+
+public interface ILights {
+    boolean isLightsOn(); 
+    boolean isLightsOff(); 
 }
 
-interface IRadio {
-startRadio() : void;
-playCd : void;
-stopRadio() : void;
+
+public interface IRadio {
+    void startRadio(); 
+    void playCd(); 
+    void stopRadio(); 
 }
 
-interface IEngine {
-startEngine() : void;
-acelerate() : number;
-stopEngine() : void;
+
+public interface IEngine {
+    void startEngine(); 
+    int accelerate(); 
+    void stopEngine(); 
 }
 ```
 

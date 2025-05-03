@@ -5,105 +5,143 @@ Liskov Principle ဆိုတာ If S is a subtype of T, then objects of type T 
 
 **Bad :**
 
-```javascript
-class Rectangle {
-  constructor() {
-    this.width = 0;
-    this.height = 0;
-  }
+```java
+// Rectangle Class
+public class Rectangle {
+    protected int width;
+    protected int height;
 
-  setColor(color) {
-    // ...
-  }
+    public Rectangle() {
+        this.width = 0;
+        this.height = 0;
+    }
 
-  render(area) {
-    // ...
-  }
+    public void setColor(String color) {
+    }
 
-  setWidth(width) {
-    this.width = width;
-  }
+    public void render(int area) {
+        System.out.println("Rendering rectangle with area: " + area);
+    }
 
-  setHeight(height) {
-    this.height = height;
-  }
+    public void setWidth(int width) {
+        this.width = width;
+    }
 
-  getArea() {
-    return this.width * this.height;
-  }
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getArea() {
+        return width * height;
+    }
 }
 
-class Square extends Rectangle {
-  setWidth(width) {
-    this.width = width;
-    this.height = width;
-  }
+// Square Class (LSP Violation with Rectangle)
+public class Square extends Rectangle {
 
-  setHeight(height) {
-    this.width = height;
-    this.height = height;
-  }
+    @Override
+    public void setWidth(int width) {
+        this.width = width;
+        this.height = width;
+    }
+
+    @Override
+    public void setHeight(int height) {
+        this.width = height;
+        this.height = height;
+    }
 }
 
-function renderLargeRectangles(rectangles) {
-  rectangles.forEach(rectangle => {
-    rectangle.setWidth(4);
-    rectangle.setHeight(5);
-    const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
-    rectangle.render(area);
-  });
-}
+// Main Class to render Rectangles and Squares
+import java.util.List;
 
-const rectangles = [new Rectangle(), new Rectangle(), new Square()];
-renderLargeRectangles(rectangles);
+public class Main {
+
+    public static void renderLargeRectangles(List<Rectangle> rectangles) {
+        for (Rectangle rectangle : rectangles) {
+            rectangle.setWidth(4);
+            rectangle.setHeight(5);
+            int area = rectangle.getArea(); // This will give incorrect area for Square
+            rectangle.render(area);
+        }
+    }
+
+    public static void main(String[] args) {
+        // Create a list of rectangles and squares
+        List<Rectangle> rectangles = List.of(new Rectangle(), new Rectangle(), new Square());
+        renderLargeRectangles(rectangles);
+    }
+}
 
 ```
 
 **Good**
 
-```javascript
-class Shape {
-  setColor(color) {
-    // ...
-  }
+```java
+abstract class Shape {
+    public void setColor(String color) {
+    }
 
-  render(area) {
-    // ...
-  }
+    public abstract void render(int area);
+    
+    public abstract int getArea();
 }
 
+// Rectangle class
 class Rectangle extends Shape {
-  constructor(width, height) {
-    super();
-    this.width = width;
-    this.height = height;
-  }
+    private int width;
+    private int height;
 
-  getArea() {
-    return this.width * this.height;
-  }
+    public Rectangle(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    @Override
+    public int getArea() {
+        return this.width * this.height;
+    }
+
+    @Override
+    public void render(int area) {
+        System.out.println("Rendering rectangle with area: " + area);
+    }
 }
 
+// Square class
 class Square extends Shape {
-  constructor(length) {
-    super();
-    this.length = length;
-  }
+    private int length;
 
-  getArea() {
-    return this.length * this.length;
-  }
+    public Square(int length) {
+        this.length = length;
+    }
+
+    @Override
+    public int getArea() {
+        return this.length * this.length;
+    }
+
+    @Override
+    public void render(int area) {
+        System.out.println("Rendering square with area: " + area);
+    }
 }
 
-function renderLargeShapes(shapes) {
-  shapes.forEach(shape => {
-    const area = shape.getArea();
-    shape.render(area);
-  });
+import java.util.List;
+
+public class Main {
+
+    public static void renderLargeShapes(List<Shape> shapes) {
+        for (Shape shape : shapes) {
+            int area = shape.getArea();
+            shape.render(area);  
+        }
+    }
+
+    public static void main(String[] args) {
+        List<Shape> shapes = List.of(new Rectangle(4, 5), new Rectangle(4, 5), new Square(5));
+        renderLargeShapes(shapes);  
+    }
 }
-
-const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
-renderLargeShapes(shapes);
-
 ```
 

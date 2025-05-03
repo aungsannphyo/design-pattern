@@ -4,95 +4,138 @@ Open for extension but closed for modification. အဲ့တာကဘာကိ�
 
 #### **Bad**
 
-```typescript
-interface IAdapter {
-	name : string
+```java
+// IAdapter interface
+public interface IAdapter {
+    String getName();
 }
 
-class AjaxAdapter implements IAdapter {
-   name : string;
-  constructor() {
-    this.name = "ajaxAdapter";
-  }
-}
+// AjaxAdapter class implements IAdapter
+public class AjaxAdapter implements IAdapter {
+    private String name;
 
-class NodeAdapter implements IAdapter {
-  name : string;
-  constructor() {
-    this.name = "nodeAdapter";
-  }
-}
-
-class HttpRequester {
-  adapter : any;
-  constructor(adapter : any) {
-    this.adapter = adapter;
-  }
-
-  fetch(url : string) {
-    if (this.adapter.name === "ajaxAdapter") {
-      return makeAjaxCall(url).then(response => {
-        // transform response and return
-      });
-    } else if (this.adapter.name === "nodeAdapter") {
-      return makeHttpCall(url).then(response => {
-        // transform response and return
-      });
+    public AjaxAdapter() {
+        this.name = "ajaxAdapter";
     }
-  }
+
+    @Override
+    public String getName() {
+        return name;
+    }
 }
 
-function makeAjaxCall(url : string) {
-  // request and return promise
+// NodeAdapter class implements IAdapter
+public class NodeAdapter implements IAdapter {
+    private String name;
+
+    public NodeAdapter() {
+        this.name = "nodeAdapter";
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
 }
 
-function makeHttpCall(url : string) {
-  // request and return promise
+// HttpRequester class
+public class HttpRequester {
+    private IAdapter adapter;
+
+    public HttpRequester(IAdapter adapter) {
+        this.adapter = adapter;
+    }
+
+    public void fetch(String url) {
+        if (adapter.getName().equals("ajaxAdapter")) {
+            makeAjaxCall(url).thenAccept(response -> {
+                // transform response and return
+            });
+        } else if (adapter.getName().equals("nodeAdapter")) {
+            makeHttpCall(url).thenAccept(response -> {
+                // transform response and return
+            });
+        }
+    }
+
+    public CompletableFuture<String> makeAjaxCall(String url) {
+        return CompletableFuture.supplyAsync(() -> "Ajax response");
+    }
+
+    public CompletableFuture<String> makeHttpCall(String url) {
+        return CompletableFuture.supplyAsync(() -> "Node response");
+    }
 }
 
 ```
 
 #### Good
 
-```typescript
-interface IAdapter {
-	name : string
+```java
+import java.util.concurrent.CompletableFuture;
+
+// IAdapter interface
+public interface IAdapter {
+    String getName();
+    CompletableFuture<String> request(String url);
 }
 
-class AjaxAdapter implements IAdapter {
-  name : string
-  constructor() {
-    this.name = "ajaxAdapter";
-  }
+// AjaxAdapter class implements IAdapter
+public class AjaxAdapter implements IAdapter {
+    private String name;
 
-  request(url : string) {
-    // request and return promise
-  }
+    public AjaxAdapter() {
+        this.name = "ajaxAdapter";
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public CompletableFuture<String> request(String url) {
+        return CompletableFuture.supplyAsync(() -> {
+            return "Ajax response from " + url;
+        });
+    }
 }
 
-class NodeAdapter implements Adapter {
-  name : string
-  constructor() {
-    this.name = "nodeAdapter";
-  }
+// NodeAdapter class implements IAdapter
+public class NodeAdapter implements IAdapter {
+    private String name;
 
-  request(url : string) {
-    // request and return promise
-  }
+    public NodeAdapter() {
+        this.name = "nodeAdapter";
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public CompletableFuture<String> request(String url) {
+        return CompletableFuture.supplyAsync(() -> {
+            return "Node response from " + url;
+        });
+    }
 }
 
-class HttpRequester {
-  adapter : any
-  constructor(adapter : any) {
-    this.adapter = adapter;
-  }
+// HttpRequester class
+public class HttpRequester {
+    private IAdapter adapter;
 
-  fetch(url : string) {
-    return this.adapter.request(url).then(response => {
-      // transform response and return
-    });
-  }
+    public HttpRequester(IAdapter adapter) {
+        this.adapter = adapter;
+    }
+
+    public CompletableFuture<String> fetch(String url) {
+        return adapter.request(url).thenApply(response -> {
+            // Transform response and return
+            return "Transformed: " + response;
+        });
+    }
 }
-
 ```
 
