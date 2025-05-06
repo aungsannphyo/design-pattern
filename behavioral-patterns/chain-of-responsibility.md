@@ -8,7 +8,7 @@ CoR အကြောင်းမပြောခင် ဥပမာတစ်ခု
 // Currency Handler Interface
 public interface KyatHandler {
     void setNext(KyatHandler handler);
-    void handle(int coin);
+    void handle(int kyat);
 }
 
 ```
