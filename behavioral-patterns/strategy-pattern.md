@@ -101,7 +101,6 @@ Paid 150000.0MMK using Kpay: 09-2030111
 Paid 250000.0MMK using Dinger: 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
 ```
 
-![strategy pattern!](./public/strategy-patterns.jpeg)
 
 အပေါ်က example ကိုကြည့်မယ်ဆိုရင် ShoppingCart ကဘယ် payment နဲ့ပေးတယ်ဆိုတာသိစရာမလိုတဲ့အတွက် main business logic တွေကို encapsulate လုပ်ထားသလိုလဲဖစ်တယ် ပီးတော့ payment method ပြောင်းလဲသွားတယ်ဆိုရင်တောင် သူ့ကိုပြင်စရာမလိုတဲ့အတွက် Open/Close Principle ကိုလိုက်နာသလိုလဲဖစ်တယ်။ အကယ်၍ ဒီနေရာမှာသာ strategy ကိုမသုံးခဲ့ဘူးဆိုရင် if else or switch case ကို payment method တစ်ခုချင်းစီအတွက်လိုအပ်လာခဲ့ပီ အဲ့ကျ အသစ်ထည့်ချင်တာဖစ်ဖစ် ဖြုတ်ချင်တာဖစ်ဖစ် checkout method သွားသွားထိနေတဲ့အတွက်ရေရှည်မှာအဆင်မပြေနိုင်ဘူး strategy ကိုသုံးလိုက်ချင်းအားဖြင့် အသစ်တစ်ခုခုထပ်ထည့်မယ်ဆိုရင် inject ထိုးလိုက်ရုံနဲ့ အကုန်လုံးအဆင်ပြေသွားမှာဖစ်တယ်။အောက်မှာ ဥပမာပြထားပေးပါတယ်။
 
