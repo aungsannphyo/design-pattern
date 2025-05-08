@@ -8,7 +8,7 @@ Adapter Pattern ကဘယ်လိုအလုပ်လုပ်သလဲဆိ�
 interface တွေက အချင်းချင်း communication လုပ်လို့မရပေမဲ့ ကြားကနေ adapter တစ်ခုထည့်လိုက်တာနဲ့ အဆင်ပြေအောင်လုပ်နိုင်ပါတယ်။
 
 
-## Adapter မှာနှစ်မျိုးရှိတယ်
+### Adapter မှာနှစ်မျိုးရှိတယ်
 
 Object Adapter interface object တစ်ခုကနေ အခြား objects တွေကို composition လုပ်ချိန်မှာသုံးတယ်။
 Class Adapter Inheritance လုပ်ချိန်မှာသုံးတယ်။
